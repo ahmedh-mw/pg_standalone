@@ -1,7 +1,7 @@
 // Copyright 2025 The MathWorks, Inc.
-node('<Jenkins agent label>'){
+node('selfhosted_win_agents'){
     // For the online configuration guide visit: https://www.mathworks.com/help/slcheck/padv/ug/integrate-process-into-jenkins-with-artifact-management.html
-    env.MW_SUPPORT_PACKAGE_ROOT = '<Support package root path>'
+    env.MW_PIPELINE_GENERATION_PACKAGE_ROOT = 'D:/repos/bslcicd/matlab/toolbox/buildtool_porting/pipeline_generator'
     // env.MW_RELATIVE_PROJECT_PATH = "<Project relative path from repository root>";  // e.g. "" or "relative/path/to/project/"
     env.MW_REMOTE_BUILD_CACHE_NAME = "$JOB_NAME"
     env.MW_PIPELINE_GEN_DIRECTORY = "_pipelineGen_"
@@ -18,6 +18,9 @@ node('<Jenkins agent label>'){
     // withCredentials([string( credentialsId: 'AZ_CONNECTION_STRING_SECRET',variable: 'az_connection_string')]) {
     //     env.AZ_CONNECTION_STRING = az_connection_string
     // }
+    withCredentials([string( credentialsId: 'AZ_CONNECTION_STRING_SECRET',variable: 'az_connection_string')]) {
+        env.AZ_CONNECTION_STRING = az_connection_string
+    }
 
     def pipelineGenerationPath = "${env.MW_RELATIVE_PROJECT_PATH?:''}${env.MW_PIPELINE_GEN_DIRECTORY}"
     stage('Pipeline Generation'){
@@ -25,13 +28,13 @@ node('<Jenkins agent label>'){
 
         // Loading pipeline utilities script
         def command = """python3 -c \"import shutil,os;os.makedirs(r'${pipelineGenerationPath}', exist_ok=True);\
-            shutil.copy(r'$MW_SUPPORT_PACKAGE_ROOT/toolbox/padv/pipeline_generator/ci/templates/jenkins/MW_PipelineUtils.groovy', r'${pipelineGenerationPath}')""" 
+            shutil.copy(r'$MW_PIPELINE_GENERATION_PACKAGE_ROOT/ci/templates/jenkins/MW_PipelineUtils.groovy', r'${pipelineGenerationPath}')""" 
         def isUnixEnvironment = isUnix()
         if (isUnixEnvironment == true){ sh(command) } else { bat(command)}
         def pipelineUtils = load("${pipelineGenerationPath}/MW_PipelineUtils.groovy")
 
         // Generating Process Advisor's process pipeline
-        pipelineUtils.runShellCommand("matlab -batch \"addpath('$WORKSPACE');generate_jenkins_pipeline();\"", isUnixEnvironment)
+        pipelineUtils.runShellCommand("matlab -batch \"addpath('$WORKSPACE/pipelines');generate_jenkins_pipeline();\"", isUnixEnvironment)
         stash includes:"${pipelineGenerationPath}/**", name:'pipeline_generated_files'
         archiveArtifacts artifacts: "${pipelineGenerationPath}/**", allowEmptyArchive: true
         pipelineUtils.loadEnvVariables(isUnixEnvironment, scmVars.GIT_COMMIT)
