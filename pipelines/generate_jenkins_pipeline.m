@@ -20,6 +20,7 @@ function generate_jenkins_pipeline()
     op.RunnerTags = "selfhosted_win_agents";
     op.StopOnStageFailure = true;
     op.ReportPath = "build_results/reports/finalReport";
+    op.GenerateJUnitForProcess = false;
     
     op.ArtifactServiceMode = 'azure_blob';         % network/jfrog/s3/azure_blob
     % op.NetworkStoragePath = '<Network storage path>';
