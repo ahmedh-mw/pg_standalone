@@ -2,7 +2,7 @@ function plan = buildfile
 import matlab.buildtool.*;
 
 plan = buildplan;
-plan("qualProcess") = Process;
+plan("qualProcess") = matlab.buildtool.TaskGroup();
 plan("qualProcess:check") = Task(Actions=@checkTask);
 plan("qualProcess:test") = Task(Actions=@testTask, Dependencies="qualProcess:check");
 plan.DefaultTasks = "qualProcess:test";
@@ -18,7 +18,8 @@ end
 
 function testTask(~)
 % Run unit tests
-results = runtests(IncludeSubfolders=true,OutputDetail="terse");
+results = runtests(IncludeSubfolders=true,OutputDetail="Terse", ...
+    BaseFolder=fullfile(fileparts(pwd), "src"));
 disp(results.table);
 assertSuccess(results);
 end
