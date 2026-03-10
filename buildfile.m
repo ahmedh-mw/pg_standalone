@@ -2,6 +2,7 @@ function plan = buildfile
 import matlab.buildtool.*;
 
 plan = buildplan;
+plan("anotherProcess") = matlab.buildtool.TaskGroup();
 plan("qualProcess") = matlab.buildtool.TaskGroup();
 plan("qualProcess:check") = Task(Actions=@checkTask);
 plan("qualProcess:test") = Task(Actions=@testTask, Dependencies="qualProcess:check");
