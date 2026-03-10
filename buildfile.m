@@ -1,9 +1,11 @@
 function plan = buildfile
-% Create a plan from task functions
-plan = buildplan(localfunctions);
+import matlab.buildtool.*;
 
-% Make the "test" task the default task in the plan
-plan.DefaultTasks = "test";
+plan = buildplan;
+plan("qualProcess") = Process;
+plan("qualProcess:check") = Task(Actions=@checkTask);
+plan("qualProcess:test") = Task(Actions=@testTask, Dependencies="qualProcess:check");
+plan.DefaultTasks = "qualProcess:test";
 end
 
 function checkTask(~)

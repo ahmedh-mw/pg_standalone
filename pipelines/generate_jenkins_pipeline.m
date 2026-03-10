@@ -7,18 +7,21 @@ function generate_jenkins_pipeline()
     remoteBuildCacheName = string(getenv('MW_REMOTE_BUILD_CACHE_NAME'));
     pipelineGenDirectory = string(getenv('MW_PIPELINE_GEN_DIRECTORY'));
 
-    op = pg.pipeline.JenkinsOptions;
+    op = pg.pipeline.Options();
     op.PipelineGenerationPackageRoot = pipelineGenerationPackageRoot;
     op.RelativeProjectPath = relativeProjectPath;
     op.RemoteBuildCacheName = remoteBuildCacheName;
     op.GeneratedPipelineDirectory = pipelineGenDirectory;
 
+    op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SingleJob;
     op.Platform = pg.pipeline.Platform.Jenkins;
+    op.GeneratedPipelineFileName = ".build/build_pipeline.groovy";
+    % op.TemplatePath = ".build/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
     op.StopOnStageFailure = true;
     op.RunprocessCommandOptions.GenerateJUnitForProcess = true;
-    op.ReportPath = "$PROJECTROOT$/PA_Results/Report/ProcessAdvisorReport";
+    op.ReportPath = "build_results/reports/finalReport";
     
     op.ArtifactServiceMode = 'azure_blob';         % network/jfrog/s3/azure_blob
     % op.NetworkStoragePath = '<Network storage path>';
@@ -36,5 +39,5 @@ function generate_jenkins_pipeline()
     % op.MatlabLaunchCmd = "xvfb-run -a matlab -batch"; 
     % op.MatlabStartupOptions = "";
     % op.AddBatchStartupOption = false;
-    padv.pipeline.generatePipeline(op, "CIPipeline");
+    pg.pipeline.generatePipeline(op);
 end
