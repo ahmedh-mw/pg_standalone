@@ -12,8 +12,7 @@ function generate_jenkins_pipeline()
     op.RelativeProjectPath = relativeProjectPath;
     op.RemoteBuildCacheName = remoteBuildCacheName;
     op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.groovy");
-    op.GeneratedPipelineDirectory = pipelineGenDirectory;
-
+    
     op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SingleJob;
     op.Platform = pg.pipeline.Platform.Jenkins;
