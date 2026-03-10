@@ -11,12 +11,12 @@ function generate_jenkins_pipeline()
     op.PipelineGenerationPackageRoot = pipelineGenerationPackageRoot;
     op.RelativeProjectPath = relativeProjectPath;
     op.RemoteBuildCacheName = remoteBuildCacheName;
+    op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.groovy");
     op.GeneratedPipelineDirectory = pipelineGenDirectory;
 
     op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SingleJob;
     op.Platform = pg.pipeline.Platform.Jenkins;
-    op.GeneratedPipelineFileName = ".build/build_pipeline.groovy";
     % op.TemplatePath = ".build/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
     op.StopOnStageFailure = true;

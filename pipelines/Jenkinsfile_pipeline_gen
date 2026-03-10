@@ -40,5 +40,5 @@ node('selfhosted_win_agents'){
         pipelineUtils.loadEnvVariables(isUnixEnvironment, scmVars.GIT_COMMIT)
     }
 
-    load("$WORKSPACE/${pipelineGenerationPath}/simulink_pipeline")
+    load("$WORKSPACE/${pipelineGenerationPath}/build_pipeline.groovy")
 }
