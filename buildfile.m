@@ -5,8 +5,11 @@ plan = buildplan;
 plan("anotherProcess") = matlab.buildtool.TaskGroup();
 plan("qualProcess") = matlab.buildtool.TaskGroup();
 plan("qualProcess:check") = Task(Actions=@checkTask);
+plan("qualProcess:check").Inputs = "buildfile.m";
 plan("qualProcess:test") = Task(Actions=@testTask, Dependencies="qualProcess:check");
+plan("qualProcess:test").Inputs = "buildfile.m";
 plan("qualProcess:test2") = Task(Actions=@testTask);
+plan("qualProcess:test2").Inputs = "buildfile.m";
 plan.DefaultTasks = "qualProcess:test";
 end
 
