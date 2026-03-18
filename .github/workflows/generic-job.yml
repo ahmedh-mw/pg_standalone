@@ -47,5 +47,6 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: ${{ env._MW_PIPELINE_OPTIONS_ARTIFACTS_FILE_NAME_STEM }}
+          include-hidden-files: true
           path: ${{ env._MW_PIPELINE_OPTIONS_ARTIFACTS_FILE_NAME_STEM }}/
 
