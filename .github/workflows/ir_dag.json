@@ -44,7 +44,7 @@
       "Name": "start",
       "Tasks": "qualProcess:start",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start"
       ],
       "JunitFiles": [],
@@ -72,7 +72,7 @@
       "Name": "check2a",
       "Tasks": "qualProcess:check2a",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\check2a"
       ],
       "JunitFiles": [],
@@ -100,7 +100,7 @@
       "Name": "check2b",
       "Tasks": "qualProcess:check2b",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\check2b"
       ],
       "JunitFiles": [],
@@ -124,7 +124,7 @@
       "Name": "check2c",
       "Tasks": "qualProcess:check2c",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\check2c"
       ],
       "JunitFiles": [],
@@ -148,7 +148,7 @@
       "Name": "test3a",
       "Tasks": "qualProcess:test3a",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\test3a"
       ],
       "JunitFiles": [],
@@ -172,7 +172,7 @@
       "Name": "test3b",
       "Tasks": "qualProcess:test3b",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\test3b"
       ],
       "JunitFiles": [],
@@ -196,7 +196,7 @@
       "Name": "test4a",
       "Tasks": "qualProcess:test4a",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\test4a"
       ],
       "JunitFiles": [],
@@ -231,7 +231,7 @@
       "Name": "end",
       "Tasks": "qualProcess:end",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\end",
         "build_results/reports/finalReport"
       ],
@@ -294,7 +294,7 @@
         "br_check2c"
       ],
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start"
       ],
       "JobsNames": "start",
@@ -310,7 +310,7 @@
         "br_test4a"
       ],
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2a"
       ],
@@ -326,7 +326,7 @@
       ],
       "SuccessorBranchesNames": "br_end",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2a",
         "results\\test3a"
@@ -353,7 +353,7 @@
       ],
       "SuccessorBranchesNames": [],
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2b",
         "results\\check2c",
@@ -375,7 +375,7 @@
       ],
       "SuccessorBranchesNames": "br_test4a",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2a",
         "results\\test3b"
@@ -396,7 +396,7 @@
       ],
       "SuccessorBranchesNames": "br_end",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2a",
         "results\\test3b",
@@ -411,7 +411,7 @@
       "AllPredecessorBranchesNames": "br_start",
       "SuccessorBranchesNames": "br_end",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2b"
       ],
@@ -424,7 +424,7 @@
       "AllPredecessorBranchesNames": "br_start",
       "SuccessorBranchesNames": "br_end",
       "OutputsPaths": [
-        ".buildtool",
+        ".buildtool/",
         "results\\start",
         "results\\check2c"
       ],
@@ -439,7 +439,7 @@
     "HasParallelBranches": false
   },
   "OutputsPaths": [
-    ".buildtool",
+    ".buildtool/",
     "results\\check2a",
     "results\\check2b",
     "results\\check2c",
