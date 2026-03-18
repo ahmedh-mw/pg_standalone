@@ -30,7 +30,7 @@
     "RunnerTags": "selfhosted_win_agents",
     "ImageTag": "",
     "UpstreamJobName": "SimulinkPipelineGeneration",
-    "TemplatePath": [],
+    "TemplatePath": ".github/workflows/generic-job.yml",
     "GeneratedPipelineDirectory": ".github\\workflows"
   },
   "IncrementalPipelineEnabled": true,

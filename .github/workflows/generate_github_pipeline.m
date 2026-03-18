@@ -13,7 +13,7 @@ function generate_github_pipeline(pipelineGenDirectory)
     op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SerialJobs;
     op.Platform = pg.pipeline.Platform.GitHub;
-    % op.TemplatePath = "templates/generic-job.yml";
+    op.TemplatePath = ".github/workflows/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
     op.StopOnStageFailure = true;
     op.ReportPath = "build_results/reports/finalReport";
