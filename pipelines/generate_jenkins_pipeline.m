@@ -11,7 +11,7 @@ function generate_jenkins_pipeline(pipelineGenDirectory)
     op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.groovy");
     
     op.ProcessName = "qualProcess";
-    op.Architecture = pg.pipeline.Architecture.SerialJobs;
+    op.Architecture = pg.pipeline.Architecture.SingleJob;
     op.Platform = pg.pipeline.Platform.Jenkins;
     % op.TemplatePath = "templates/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
