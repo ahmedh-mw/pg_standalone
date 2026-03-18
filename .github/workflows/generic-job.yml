@@ -24,12 +24,12 @@ jobs:
       MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN_SECRET }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
       - name: Download workflow generated files
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: workflow_generated_files
           path: ${{env.MW_RELATIVE_PROJECT_PATH}}${{env.MW_PIPELINE_GEN_DIRECTORY}}
@@ -44,7 +44,7 @@ jobs:
         if: always() && !cancelled()
       - name: Upload Pipeline Artifacts
         if: ${{ always() && !cancelled() && env._MW_PIPELINE_JOB_IS_COLLECTING_ARTIFACTS == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env._MW_PIPELINE_OPTIONS_ARTIFACTS_FILE_NAME_STEM }}
           path: ${{ env._MW_PIPELINE_OPTIONS_ARTIFACTS_FILE_NAME_STEM }}/

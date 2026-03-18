@@ -23,7 +23,7 @@ jobs:
     runs-on: 'selfhosted_win_agents'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
@@ -32,7 +32,7 @@ jobs:
           python3 -c "import shutil,os; os.makedirs(r'${{env.MW_RELATIVE_PROJECT_PATH}}${{env.MW_PIPELINE_GEN_DIRECTORY}}', exist_ok=True);
           shutil.copy(r'${{env.MW_IR_DAG_FILE_PATH}}ir_dag.json',r'${{env.MW_RELATIVE_PROJECT_PATH}}${{env.MW_PIPELINE_GEN_DIRECTORY}}/')"
       - name: Upload workflow files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: workflow_generated_files
           path: ${{env.MW_RELATIVE_PROJECT_PATH}}${{env.MW_PIPELINE_GEN_DIRECTORY}}/
