@@ -1,14 +1,10 @@
 % Copyright 2025 The MathWorks, Inc.
-% generate_github_pipeline(".github/workflows")
-function generate_github_pipeline(pipelineGenDirectory)
-    if nargin < 1
-        pipelineGenDirectory = string(getenv('MW_PIPELINE_GEN_DIRECTORY'));
-    end
+function generate_github_pipeline()
     op = pg.pipeline.Options();
-    op.PipelineGenerationPackageRoot = string(getenv('MW_PIPELINE_GENERATION_PACKAGE_ROOT'));
-    op.RelativeProjectPath = string(getenv('MW_RELATIVE_PROJECT_PATH'));
-    op.RemoteBuildCacheName = string(getenv('MW_REMOTE_BUILD_CACHE_NAME'));
-    op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.yml");
+    op.PipelineGenerationPackageRoot = "D:/repos/pg_ws/pipeline_generator_porting";
+    % op.RelativeProjectPath = "";
+    op.RemoteBuildCacheName = "GitHub_Project_buildtool";
+    op.GeneratedPipelineFileName = ".github/workflows/build_pipeline.yml";
     
     op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SerialJobs;

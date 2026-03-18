@@ -5,11 +5,11 @@
     "ProcessName": "qualProcess",
     "Architecture": "SerialJobs",
     "MatlabLaunchCmd": "matlab -batch",
-    "GeneratedPipelineFileName": ".github\\workflows\\build_pipeline.yml",
-    "PipelineGenerationPackageRoot": "",
+    "GeneratedPipelineFileName": ".github/workflows/build_pipeline.yml",
+    "PipelineGenerationPackageRoot": "D:/repos/pg_ws/pipeline_generator_porting",
     "RelativeProjectPath": "",
     "CacheFallbackBranches": "main",
-    "RemoteBuildCacheName": "",
+    "RemoteBuildCacheName": "GitHub_Project_buildtool",
     "ArtifactServiceMode": "azure_blob",
     "NetworkStoragePath": "",
     "ArtifactoryUrl": "",
@@ -31,7 +31,7 @@
     "ImageTag": "",
     "UpstreamJobName": "SimulinkPipelineGeneration",
     "TemplatePath": ".github/workflows/generic-job.yml",
-    "GeneratedPipelineDirectory": ".github\\workflows"
+    "GeneratedPipelineDirectory": ".github/workflows"
   },
   "IncrementalPipelineEnabled": true,
   "StartJobName": "check",
