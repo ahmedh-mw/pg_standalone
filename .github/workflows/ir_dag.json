@@ -1,0 +1,122 @@
+{
+  "Name": [],
+  "Options": {
+    "Platform": "GitHub",
+    "ProcessName": "qualProcess",
+    "Architecture": "SerialJobs",
+    "MatlabLaunchCmd": "matlab -batch",
+    "GeneratedPipelineFileName": ".github\\workflows\\build_pipeline.yml",
+    "PipelineGenerationPackageRoot": "",
+    "RelativeProjectPath": "",
+    "CacheFallbackBranches": "main",
+    "RemoteBuildCacheName": "",
+    "ArtifactServiceMode": "azure_blob",
+    "NetworkStoragePath": "",
+    "ArtifactoryUrl": "",
+    "ArtifactoryRepoName": "",
+    "S3BucketName": "",
+    "S3AwsAccessKeyID": "",
+    "AzContainerName": "padvblobcontainer",
+    "GenerateReport": true,
+    "ReportFormat": "pdf",
+    "ReportPath": "build_results/reports/finalReport",
+    "EnableArtifactCollection": true,
+    "ArtifactZipFileName": "PipelineArtifacts.zip",
+    "UseMatlabPlugin": false,
+    "EnableSubmodulesCheckout": true,
+    "GenerateJUnitForProcess": false,
+    "StopOnStageFailure": true,
+    "RunnerType": "default",
+    "RunnerTags": "selfhosted_win_agents",
+    "ImageTag": "",
+    "UpstreamJobName": "SimulinkPipelineGeneration",
+    "TemplatePath": [],
+    "GeneratedPipelineDirectory": ".github\\workflows"
+  },
+  "IncrementalPipelineEnabled": true,
+  "StartJobName": "check",
+  "EndJobName": "test",
+  "AlmDdFilePath": "derived/artifacts.dmr",
+  "HasNestedParallelBranches": false,
+  "Jobs": {
+    "check": {
+      "Name": "check",
+      "Tasks": "qualProcess:check",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\check"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": [],
+      "SuccessorJobsNames": "test",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - check'",
+      "MATLABCommands": "buildtool qualProcess:check;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - check'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": true,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_check",
+      "DownloadBranchName": "br_check",
+      "MergingSettings": []
+    },
+    "test": {
+      "Name": "test",
+      "Tasks": "qualProcess:test",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\test",
+        "build_results/reports/finalReport"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "check",
+      "SuccessorJobsNames": [],
+      "PreMATLABCommands": "echo 'Pre MATLAB command - test'",
+      "MATLABCommands": "buildtool qualProcess:test;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - test'",
+      "IsStartingNewBranch": false,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": true,
+      "IsCollectingArtifacts": true,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_check",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    }
+  },
+  "Branches": {
+    "br_check": {
+      "Name": "br_check",
+      "PredecessorBranchesNames": [],
+      "AllPredecessorBranchesNames": [],
+      "SuccessorBranchesNames": [],
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\check",
+        "results\\test"
+      ],
+      "JobsNames": [
+        "check",
+        "test"
+      ],
+      "Level": 0
+    }
+  },
+  "Stages": {
+    "Name": "Stage_1",
+    "BranchesNames": "br_check",
+    "Level": 0,
+    "HasParallelBranches": false
+  },
+  "OutputsPaths": [
+    ".buildtool",
+    "results\\check",
+    "results\\test",
+    "build_results/reports/finalReport"
+  ]
+}
