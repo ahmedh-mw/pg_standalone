@@ -1,22 +1,19 @@
 % Copyright 2025 The MathWorks, Inc.
-
-function generate_jenkins_pipeline()
-    % workspace = string(getenv('WORKSPACE'));      % Reading Jenkins workspace environment variable
-    pipelineGenerationPackageRoot = string(getenv('MW_PIPELINE_GENERATION_PACKAGE_ROOT'));
-    relativeProjectPath = string(getenv('MW_RELATIVE_PROJECT_PATH'));
-    remoteBuildCacheName = string(getenv('MW_REMOTE_BUILD_CACHE_NAME'));
-    pipelineGenDirectory = string(getenv('MW_PIPELINE_GEN_DIRECTORY'));
-
+% generate_jenkins_pipeline(".build")
+function generate_jenkins_pipeline(pipelineGenDirectory)
+    if nargin < 1
+        pipelineGenDirectory = string(getenv('MW_PIPELINE_GEN_DIRECTORY'));
+    end
     op = pg.pipeline.Options();
-    op.PipelineGenerationPackageRoot = pipelineGenerationPackageRoot;
-    op.RelativeProjectPath = relativeProjectPath;
-    op.RemoteBuildCacheName = remoteBuildCacheName;
+    op.PipelineGenerationPackageRoot = string(getenv('MW_PIPELINE_GENERATION_PACKAGE_ROOT'));
+    op.RelativeProjectPath = string(getenv('MW_RELATIVE_PROJECT_PATH'));
+    op.RemoteBuildCacheName = string(getenv('MW_REMOTE_BUILD_CACHE_NAME'));
     op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.groovy");
     
     op.ProcessName = "qualProcess";
     op.Architecture = pg.pipeline.Architecture.SerialJobs;
     op.Platform = pg.pipeline.Platform.Jenkins;
-    % op.TemplatePath = ".build/generic-job.yml";
+    % op.TemplatePath = "templates/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
     op.StopOnStageFailure = true;
     op.ReportPath = "build_results/reports/finalReport";
@@ -38,5 +35,5 @@ function generate_jenkins_pipeline()
     % op.MatlabLaunchCmd = "xvfb-run -a matlab -batch"; 
     % op.MatlabStartupOptions = "";
     % op.AddBatchStartupOption = false;
-    pg.pipeline.generatePipeline(op);
+    buildtool.generators.generatePipeline(op);
 end
