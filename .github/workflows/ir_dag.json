@@ -2,8 +2,9 @@
   "Name": [],
   "Options": {
     "Platform": "GitHub",
+    "BuildPlanFilePath": "buildfile2.m",
     "ProcessName": "qualProcess",
-    "Architecture": "SerialJobs",
+    "Architecture": "FullDAGJobs",
     "MatlabLaunchCmd": "matlab -batch",
     "GeneratedPipelineFileName": ".github/workflows/build_pipeline.yml",
     "PipelineGenerationPackageRoot": "D:/repos/pg_ws/pipeline_generator_porting",
@@ -34,89 +35,419 @@
     "GeneratedPipelineDirectory": ".github/workflows"
   },
   "IncrementalPipelineEnabled": true,
-  "StartJobName": "check",
-  "EndJobName": "test",
+  "StartJobName": "start",
+  "EndJobName": "end",
   "AlmDdFilePath": "derived/artifacts.dmr",
-  "HasNestedParallelBranches": false,
+  "HasNestedParallelBranches": true,
   "Jobs": {
-    "check": {
-      "Name": "check",
-      "Tasks": "qualProcess:check",
+    "start": {
+      "Name": "start",
+      "Tasks": "qualProcess:start",
       "OutputsPaths": [
         ".buildtool",
-        "results\\check"
+        "results\\start"
       ],
       "JunitFiles": [],
       "PredecessorJobsNames": [],
-      "SuccessorJobsNames": "test",
-      "PreMATLABCommands": "echo 'Pre MATLAB command - check'",
-      "MATLABCommands": "buildtool qualProcess:check;",
-      "PostMATLABCommands": "echo 'Post MATLAB command - check'",
+      "SuccessorJobsNames": [
+        "check2a",
+        "check2b",
+        "check2c"
+      ],
+      "PreMATLABCommands": "echo 'Pre MATLAB command - start'",
+      "MATLABCommands": "buildtool qualProcess:start -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - start'",
       "IsStartingNewBranch": true,
       "IsMergingJob": false,
-      "IsSplittingJob": false,
+      "IsSplittingJob": true,
       "IsStartJob": true,
       "IsEndJob": false,
       "IsCollectingArtifacts": false,
       "IsCollectingJunitFiles": false,
-      "BranchName": "br_check",
-      "DownloadBranchName": "br_check",
+      "BranchName": "br_start",
+      "DownloadBranchName": "br_end",
       "MergingSettings": []
     },
-    "test": {
-      "Name": "test",
-      "Tasks": "qualProcess:test",
+    "check2a": {
+      "Name": "check2a",
+      "Tasks": "qualProcess:check2a",
       "OutputsPaths": [
         ".buildtool",
-        "results\\test",
+        "results\\check2a"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "start",
+      "SuccessorJobsNames": [
+        "test3a",
+        "test3b",
+        "test4a"
+      ],
+      "PreMATLABCommands": "echo 'Pre MATLAB command - check2a'",
+      "MATLABCommands": "buildtool qualProcess:check2a -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - check2a'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": true,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_check2a",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    },
+    "check2b": {
+      "Name": "check2b",
+      "Tasks": "qualProcess:check2b",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\check2b"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "start",
+      "SuccessorJobsNames": "end",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - check2b'",
+      "MATLABCommands": "buildtool qualProcess:check2b -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - check2b'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_check2b",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    },
+    "check2c": {
+      "Name": "check2c",
+      "Tasks": "qualProcess:check2c",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\check2c"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "start",
+      "SuccessorJobsNames": "end",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - check2c'",
+      "MATLABCommands": "buildtool qualProcess:check2c -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - check2c'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_check2c",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    },
+    "test3a": {
+      "Name": "test3a",
+      "Tasks": "qualProcess:test3a",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\test3a"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "check2a",
+      "SuccessorJobsNames": "end",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - test3a'",
+      "MATLABCommands": "buildtool qualProcess:test3a -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - test3a'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_test3a",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    },
+    "test3b": {
+      "Name": "test3b",
+      "Tasks": "qualProcess:test3b",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\test3b"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": "check2a",
+      "SuccessorJobsNames": "test4a",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - test3b'",
+      "MATLABCommands": "buildtool qualProcess:test3b -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - test3b'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": false,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_test3b",
+      "DownloadBranchName": "",
+      "MergingSettings": []
+    },
+    "test4a": {
+      "Name": "test4a",
+      "Tasks": "qualProcess:test4a",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\test4a"
+      ],
+      "JunitFiles": [],
+      "PredecessorJobsNames": [
+        "check2a",
+        "test3b"
+      ],
+      "SuccessorJobsNames": "end",
+      "PreMATLABCommands": "echo 'Pre MATLAB command - test4a'",
+      "MATLABCommands": "buildtool qualProcess:test4a -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - test4a'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": true,
+      "IsSplittingJob": false,
+      "IsStartJob": false,
+      "IsEndJob": false,
+      "IsCollectingArtifacts": false,
+      "IsCollectingJunitFiles": false,
+      "BranchName": "br_test4a",
+      "DownloadBranchName": "",
+      "MergingSettings": {
+        "MergingSequence": {
+          "Base": "br_start.dmr",
+          "Ours": "br_check2a.dmr",
+          "Theirs": "br_test3b.dmr",
+          "Merged": "br_start_tmp_1.dmr"
+        },
+        "RequiredBaseDMRsBranchesNames": "br_start"
+      }
+    },
+    "end": {
+      "Name": "end",
+      "Tasks": "qualProcess:end",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\end",
         "build_results/reports/finalReport"
       ],
       "JunitFiles": [],
-      "PredecessorJobsNames": "check",
+      "PredecessorJobsNames": [
+        "check2b",
+        "check2c",
+        "test4a",
+        "test3a"
+      ],
       "SuccessorJobsNames": [],
-      "PreMATLABCommands": "echo 'Pre MATLAB command - test'",
-      "MATLABCommands": "buildtool qualProcess:test;",
-      "PostMATLABCommands": "echo 'Post MATLAB command - test'",
-      "IsStartingNewBranch": false,
-      "IsMergingJob": false,
+      "PreMATLABCommands": "echo 'Pre MATLAB command - end'",
+      "MATLABCommands": "buildtool qualProcess:end -buildFile buildfile2.m;",
+      "PostMATLABCommands": "echo 'Post MATLAB command - end'",
+      "IsStartingNewBranch": true,
+      "IsMergingJob": true,
       "IsSplittingJob": false,
       "IsStartJob": false,
       "IsEndJob": true,
       "IsCollectingArtifacts": true,
       "IsCollectingJunitFiles": false,
-      "BranchName": "br_check",
+      "BranchName": "br_end",
       "DownloadBranchName": "",
-      "MergingSettings": []
+      "MergingSettings": {
+        "MergingSequence": [
+          {
+            "Base": "br_check2a.dmr",
+            "Ours": "br_test4a.dmr",
+            "Theirs": "br_test3a.dmr",
+            "Merged": "br_check2a_tmp_1.dmr"
+          },
+          {
+            "Base": "br_start.dmr",
+            "Ours": "br_check2b.dmr",
+            "Theirs": "br_check2c.dmr",
+            "Merged": "br_start_tmp_1.dmr"
+          },
+          {
+            "Base": "br_start.dmr",
+            "Ours": "br_start_tmp_1.dmr",
+            "Theirs": "br_check2a_tmp_1.dmr",
+            "Merged": "br_start_tmp_2.dmr"
+          }
+        ],
+        "RequiredBaseDMRsBranchesNames": [
+          "br_check2a",
+          "br_start"
+        ]
+      }
     }
   },
   "Branches": {
-    "br_check": {
-      "Name": "br_check",
+    "br_start": {
+      "Name": "br_start",
       "PredecessorBranchesNames": [],
       "AllPredecessorBranchesNames": [],
+      "SuccessorBranchesNames": [
+        "br_check2a",
+        "br_check2b",
+        "br_check2c"
+      ],
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start"
+      ],
+      "JobsNames": "start",
+      "Level": 0
+    },
+    "br_check2a": {
+      "Name": "br_check2a",
+      "PredecessorBranchesNames": "br_start",
+      "AllPredecessorBranchesNames": "br_start",
+      "SuccessorBranchesNames": [
+        "br_test3a",
+        "br_test3b",
+        "br_test4a"
+      ],
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2a"
+      ],
+      "JobsNames": "check2a",
+      "Level": 1
+    },
+    "br_test3a": {
+      "Name": "br_test3a",
+      "PredecessorBranchesNames": "br_check2a",
+      "AllPredecessorBranchesNames": [
+        "br_check2a",
+        "br_start"
+      ],
+      "SuccessorBranchesNames": "br_end",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2a",
+        "results\\test3a"
+      ],
+      "JobsNames": "test3a",
+      "Level": 2
+    },
+    "br_end": {
+      "Name": "br_end",
+      "PredecessorBranchesNames": [
+        "br_check2b",
+        "br_check2c",
+        "br_test4a",
+        "br_test3a"
+      ],
+      "AllPredecessorBranchesNames": [
+        "br_check2b",
+        "br_check2c",
+        "br_test4a",
+        "br_test3a",
+        "br_start",
+        "br_check2a",
+        "br_test3b"
+      ],
       "SuccessorBranchesNames": [],
       "OutputsPaths": [
         ".buildtool",
-        "results\\check",
-        "results\\test"
+        "results\\start",
+        "results\\check2b",
+        "results\\check2c",
+        "results\\check2a",
+        "results\\test3b",
+        "results\\test4a",
+        "results\\test3a",
+        "results\\end"
       ],
-      "JobsNames": [
-        "check",
-        "test"
+      "JobsNames": "end",
+      "Level": 2
+    },
+    "br_test3b": {
+      "Name": "br_test3b",
+      "PredecessorBranchesNames": "br_check2a",
+      "AllPredecessorBranchesNames": [
+        "br_check2a",
+        "br_start"
       ],
-      "Level": 0
+      "SuccessorBranchesNames": "br_test4a",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2a",
+        "results\\test3b"
+      ],
+      "JobsNames": "test3b",
+      "Level": 2
+    },
+    "br_test4a": {
+      "Name": "br_test4a",
+      "PredecessorBranchesNames": [
+        "br_check2a",
+        "br_test3b"
+      ],
+      "AllPredecessorBranchesNames": [
+        "br_check2a",
+        "br_test3b",
+        "br_start"
+      ],
+      "SuccessorBranchesNames": "br_end",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2a",
+        "results\\test3b",
+        "results\\test4a"
+      ],
+      "JobsNames": "test4a",
+      "Level": 2
+    },
+    "br_check2b": {
+      "Name": "br_check2b",
+      "PredecessorBranchesNames": "br_start",
+      "AllPredecessorBranchesNames": "br_start",
+      "SuccessorBranchesNames": "br_end",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2b"
+      ],
+      "JobsNames": "check2b",
+      "Level": 1
+    },
+    "br_check2c": {
+      "Name": "br_check2c",
+      "PredecessorBranchesNames": "br_start",
+      "AllPredecessorBranchesNames": "br_start",
+      "SuccessorBranchesNames": "br_end",
+      "OutputsPaths": [
+        ".buildtool",
+        "results\\start",
+        "results\\check2c"
+      ],
+      "JobsNames": "check2c",
+      "Level": 1
     }
   },
   "Stages": {
     "Name": "Stage_1",
-    "BranchesNames": "br_check",
+    "BranchesNames": "br_start",
     "Level": 0,
     "HasParallelBranches": false
   },
   "OutputsPaths": [
     ".buildtool",
-    "results\\check",
-    "results\\test",
+    "results\\check2a",
+    "results\\check2b",
+    "results\\check2c",
+    "results\\end",
+    "results\\start",
+    "results\\test3a",
+    "results\\test3b",
+    "results\\test4a",
     "build_results/reports/finalReport"
   ]
 }

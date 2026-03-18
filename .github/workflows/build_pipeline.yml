@@ -37,20 +37,68 @@ jobs:
           name: workflow_generated_files
           path: ${{env.MW_RELATIVE_PROJECT_PATH}}${{env.MW_PIPELINE_GEN_DIRECTORY}}/
 
-  check:
+  start:
     needs: [build_files]
     uses: ./.github/workflows/generic-job.yml
     secrets: inherit
     with:
-      job-name: "check"
+      job-name: "start"
   
 
-  test:
-    needs: [check]
+  check2a:
+    needs: [start]
     uses: ./.github/workflows/generic-job.yml
     secrets: inherit
     with:
-      job-name: "test"
+      job-name: "check2a"
+  
+
+  check2b:
+    needs: [start]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "check2b"
+  
+
+  check2c:
+    needs: [start]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "check2c"
+  
+
+  test3a:
+    needs: [check2a]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "test3a"
+  
+
+  test3b:
+    needs: [check2a]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "test3b"
+  
+
+  test4a:
+    needs: [check2a, test3b]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "test4a"
+  
+
+  end:
+    needs: [check2b, check2c, test4a, test3a]
+    uses: ./.github/workflows/generic-job.yml
+    secrets: inherit
+    with:
+      job-name: "end"
   
 
 

@@ -7,7 +7,7 @@ function generate_github_pipeline()
     op.GeneratedPipelineFileName = ".github/workflows/build_pipeline.yml";
     
     op.ProcessName = "qualProcess";
-    op.Architecture = pg.pipeline.Architecture.SerialJobs;
+    op.Architecture = pg.pipeline.Architecture.FullDAGJobs;
     op.Platform = pg.pipeline.Platform.GitHub;
     op.TemplatePath = ".github/workflows/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
@@ -31,5 +31,7 @@ function generate_github_pipeline()
     % op.MatlabLaunchCmd = "xvfb-run -a matlab -batch"; 
     % op.MatlabStartupOptions = "";
     % op.AddBatchStartupOption = false;
+
+    op.BuildPlanFilePath = "buildfile2.m";
     buildtool.generators.generatePipeline(op);
 end
