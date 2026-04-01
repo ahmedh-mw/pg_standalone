@@ -1,7 +1,7 @@
 % Copyright 2025 The MathWorks, Inc.
 function generate_github_pipeline()
     op = pg.pipeline.Options();
-    op.PipelineGenerationPackageRoot = "D:/repos/pg_ws/pipeline_generator_porting";
+    op.PipelineGenerationPackageRoot = "D:/repos/gh/pipeline_generator_porting";
     % op.RelativeProjectPath = "";
     op.RemoteBuildCacheName = "GitHub_Project_buildtool";
     op.GeneratedPipelineFileName = ".github/workflows/build_pipeline.yml";
