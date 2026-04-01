@@ -10,7 +10,7 @@ on: # You must define at least one trigger for each workflow.
     # reopened: This triggers the workflow when a previously closed pull request is reopened
     types: [opened, synchronize, reopened]
 env:
-  MW_PIPELINE_GENERATION_PACKAGE_ROOT: 'D:/repos/pg_ws/pipeline_generator_porting'
+  MW_PIPELINE_GENERATION_PACKAGE_ROOT: 'D:/repos/gh/pipeline_generator_porting'
   MW_RELATIVE_PROJECT_PATH: ''
   MW_PIPELINE_GEN_DIRECTORY: "_pipelineGen_"
   MW_IR_DAG_FILE_PATH: ".github/workflows/"
