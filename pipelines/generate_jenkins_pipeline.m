@@ -10,7 +10,8 @@ function generate_jenkins_pipeline(pipelineGenDirectory)
     op.RemoteBuildCacheName = string(getenv('MW_REMOTE_BUILD_CACHE_NAME'));
     op.GeneratedPipelineFileName = fullfile(pipelineGenDirectory, "build_pipeline.groovy");
     
-    op.ProcessName = "qualProcess";
+    op.ProcessName = "ci";
+    op.BuildPlanFilePath = "buildfile_ci.m";
     op.Architecture = pg.pipeline.Architecture.SerialJobs;
     op.Platform = pg.pipeline.Platform.Jenkins;
     % op.TemplatePath = "templates/generic-job.yml";
@@ -35,5 +36,5 @@ function generate_jenkins_pipeline(pipelineGenDirectory)
     % op.MatlabLaunchCmd = "xvfb-run -a matlab -batch"; 
     % op.MatlabStartupOptions = "";
     % op.AddBatchStartupOption = false;
-    buildtool.generators.generatePipeline(op);
+    matlab.buildtool.generators.generatePipeline(op);
 end

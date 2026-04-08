@@ -6,8 +6,10 @@ function generate_github_pipeline()
     op.RemoteBuildCacheName = "GitHub_Project_buildtool";
     op.GeneratedPipelineFileName = ".github/workflows/build_pipeline.yml";
     
-    op.ProcessName = "qualProcess";
-    op.Architecture = pg.pipeline.Architecture.FullDAGJobs;
+    op.ProcessName = "ci";
+    op.BuildPlanFilePath = "buildfile_ci.m";
+    % op.Architecture = pg.pipeline.Architecture.FullDAGJobs;
+    op.Architecture = pg.pipeline.Architecture.SerialJobs;
     op.Platform = pg.pipeline.Platform.GitHub;
     op.TemplatePath = ".github/workflows/generic-job.yml";
     op.RunnerTags = "selfhosted_win_agents";
@@ -32,6 +34,5 @@ function generate_github_pipeline()
     % op.MatlabStartupOptions = "";
     % op.AddBatchStartupOption = false;
 
-    op.BuildPlanFilePath = "buildfile2.m";
-    buildtool.generators.generatePipeline(op);
+    matlab.buildtool.generators.generatePipeline(op);
 end

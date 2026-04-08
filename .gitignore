@@ -35,8 +35,12 @@ codegen/
 # buildtool cache folder
 .buildtool/
 
+__pycache__/
+output.log
+_test_*.py
 # #######################################################
 _build_/
 .build/
+results/
 env.yml
 licenses
